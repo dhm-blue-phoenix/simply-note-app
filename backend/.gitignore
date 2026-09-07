@@ -22,7 +22,8 @@
 .history/*
 
 # Rust
-./target
+target
+!target/debug
 
 # System files
 .DS_Store
