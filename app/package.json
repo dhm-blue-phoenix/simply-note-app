@@ -1,0 +1,8 @@
+{
+  "name": "simply-note-tauri",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "tauri": "../frontend/node_modules/.bin/tauri"
+  }
+}
