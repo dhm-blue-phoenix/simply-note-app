@@ -11,7 +11,7 @@ function Invoke-Frontend {
 function Invoke-Tauri {
     Push-Location $script:AppDir
     try {
-        npm run tauri -- dev
+        npm run tauri-win -- dev
     }
     finally {
         Pop-Location
