@@ -28,3 +28,9 @@ target
 # System files
 .DS_Store
 Thumbs.db
+
+# DB
+*.db
+
+# Env
+.env

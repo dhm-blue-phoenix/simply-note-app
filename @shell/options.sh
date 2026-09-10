@@ -41,14 +41,18 @@ select_action() {
 		printf '\nWas soll ausgeführt werden?\n'
 		printf '  1) ng serve\n'
 		printf '  2) tauri dev\n'
-		printf '  3) Beenden\n'
-		read -r -p 'Auswahl [1-3]: ' action_choice
+		printf '  3) backend run\n'
+		printf '  4) backend watch\n'
+		printf '  5) Beenden\n'
+		read -r -p 'Auswahl [1-5]: ' action_choice
 
 		case "$action_choice" in
 			1) run_frontend; break ;;
 			2) run_tauri; break ;;
-			3) break ;;
-			*) printf 'Ungültige Auswahl. Bitte 1 bis 3 eingeben.\n' ;;
+			3) run_backend; break ;;
+			4) watch_backend; break ;;
+			5) break ;;
+			*) printf 'Ungültige Auswahl. Bitte 1 bis 5 eingeben.\n' ;;
 		esac
 	done
 }

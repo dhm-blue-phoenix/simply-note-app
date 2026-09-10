@@ -1,6 +1,6 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "simply-note-app",
+  "productName": "Simply Note",
   "version": "0.1.0",
   "identifier": "com.blue.simply-note-app",
   "build": {
@@ -12,7 +12,7 @@
   "app": {
     "windows": [
       {
-        "title": "simply-note-app",
+        "title": "Simply Note",
         "width": 800,
         "height": 600
       }

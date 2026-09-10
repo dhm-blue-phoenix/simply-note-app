@@ -1,0 +1,17 @@
+Das Gegenstück zu Angulars Live-Reload ist cargo-watch. Es überwacht deine Dateien und kompiliert das Projekt bei jeder Speicherung automatisch neu.
+
+cargo install cargo-watch
+cargo watch -x run
+
+
+Nützliche Varianten
+Mit automatischem Testen:
+
+Bash
+cargo watch -x check -x test -x run
+(Prüft zuerst auf Syntaxfehler, führt Tests aus und startet erst dann den Server neu)
+
+Nur bestimmte Ordner überwachen (schneller):
+
+Bash
+cargo watch -w src -x run

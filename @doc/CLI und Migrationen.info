@@ -1,0 +1,15 @@
+# Install the CLI
+cargo binstall sqlx-cli
+
+# Create database & initial migration
+sqlx database create    ! Wichtig wen keine ausgabe kommt ist die verbindung gültig (URL IN DER .ENV)!
+sqlx migrate add create_tickets
+
+
+Migrationen/..._create_tickets.sql
+CREATE TABLE tickets (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);

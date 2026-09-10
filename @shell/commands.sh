@@ -13,3 +13,17 @@ run_tauri() {
 		npm run tauri -- dev
 	)
 }
+
+run_backend() {
+  (
+    cd "$BACKEND_DIR"
+    cargo run
+  )
+}
+
+watch_backend() {
+  (
+    cd "$BACKEND_DIR"
+    cargo watch -w src -x "run RUST_BACKTRACE=1"
+  )
+}
