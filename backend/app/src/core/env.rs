@@ -7,7 +7,7 @@ pub struct Environment {
 
 impl Environment {
     pub fn load() -> Self {
-        let env_db_url: String = env::var("DB_URL").expect("DB_URL mus in der .env gesetzt sein!");
+        let env_db_url: String = env::var("DATABASE_URL").expect("DATABASE_URL mus in der .env gesetzt sein!");
         let env_ip_addr: String = env::var("IP_ADDR").expect("IP_ADDR mus in der .env gesetzt sein!");
         let env_port: String = env::var("PORT").expect("PORT mus in der .env gesetzt sein!");
 

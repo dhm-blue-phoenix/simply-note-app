@@ -1,4 +1,4 @@
-CREATE TABLE categoties (
+CREATE TABLE IF NOT EXISTS categories (
     id TEXT PRIMARY KEY NOT NULL,
     category TEXT NOT NULL UNIQUE,
     created_at TEXT NOT NULL,
@@ -13,5 +13,5 @@ CREATE TABLE IF NOT EXISTS notes (
     category_id TEXT,
     created_at TEXT NOT NULL,
     edited_at TEXT,
-    FOREIGN KEY (category_id) REFERENCES categoties(id)
+    FOREIGN KEY (category_id) REFERENCES categories(id)
 );

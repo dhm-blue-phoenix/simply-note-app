@@ -9,6 +9,7 @@ pub enum ApiError {
     NotFound,
     InvalidInput(String),
     ValidationError(String),
+    InternalError(String),
     DatabaseError(sqlx::Error),
 }
 
@@ -24,6 +25,7 @@ impl IntoResponse for ApiError {
             ApiError::NotFound => (StatusCode::NOT_FOUND, "Seite nicht gefunden!".to_string()),
             ApiError::InvalidInput(msg) => (StatusCode::BAD_REQUEST, msg),
             ApiError::ValidationError(msg) => (StatusCode::UNPROCESSABLE_ENTITY, msg),
+            ApiError::InternalError(msg) => (StatusCode::INTERNAL_SERVER_ERROR, msg),
             ApiError::DatabaseError(err) => {
                 // Intern loggen (in Produktion NIEMALS rohe DB-Fehler an den Client schicken!)
                 eprintln!("Database error: {:?}", err);

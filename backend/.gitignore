@@ -30,7 +30,10 @@ target
 Thumbs.db
 
 # DB
+db/*
 *.db
+*.db-shm
+*.db-wal
 
 # Env
 .env

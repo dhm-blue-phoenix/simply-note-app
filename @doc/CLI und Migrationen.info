@@ -4,6 +4,7 @@ cargo binstall sqlx-cli
 # Create database & initial migration
 sqlx database create    ! Wichtig wen keine ausgabe kommt ist die verbindung gültig (URL IN DER .ENV)!
 sqlx migrate add create_tickets
+sqlx migrate run
 
 
 Migrationen/..._create_tickets.sql
