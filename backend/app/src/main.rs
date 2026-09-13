@@ -5,7 +5,7 @@ use axum::Router;
 use tokio::net::TcpListener;
 use dotenvy::dotenv;
 
-use crate::core::{init_state, Environment };
+use crate::core::{init_state, Environment};
 
 #[tokio::main]
 async fn main() {
@@ -14,7 +14,7 @@ async fn main() {
 
     let app: Router = core::router().with_state(init_state(&config.db_url).await);
 
-    let listener: TcpListener = tokio::net::TcpListener::bind(config.addr)
+    let listener: TcpListener = TcpListener::bind(config.addr)
         .await
         .expect("Das binden der ip auf den TcpListener ist Fehlgeschlagen");
 

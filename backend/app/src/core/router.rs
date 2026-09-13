@@ -1,13 +1,12 @@
-use axum::response::IntoResponse;
 use axum::routing::get;
 use axum::{Json, Router};
 use axum::http::{StatusCode, Uri};
 use serde::Serialize;
 
-use super::{ApiError, ApiResultJson, State};
+use super::{ApiResultJson, AppState};
 use crate::domains::domains_router;
 
-pub fn router() -> Router<State> {
+pub fn router() -> Router<AppState> {
     Router::new()
         .route("/ping", get(ping))
         .nest("/api", domains_router())
@@ -18,6 +17,7 @@ pub fn router() -> Router<State> {
 struct Fallback {
     path: String,
     msg: String,
+    error: String,
 }
 
 #[derive(Serialize)]
@@ -28,7 +28,8 @@ struct Ping {
 async fn fallback(uri: Uri) -> ApiResultJson<Fallback> {
     let body: Fallback = Fallback {
         path: format!("{uri}").to_string(),
-        msg: "Das ist kein gültiger Pfad!".to_string()
+        msg: "Das ist kein gültiger Pfad!".to_string(),
+        error: StatusCode::NOT_FOUND.to_string(),
     };
     Ok((StatusCode::NOT_FOUND, Json(body)))
 }

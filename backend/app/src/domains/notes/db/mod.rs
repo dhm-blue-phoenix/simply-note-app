@@ -1,3 +1,3 @@
 mod db;
 
-pub use db::{ find_all };
+pub use db::{find_all};

@@ -1,4 +1,4 @@
-use axum::{ Json, http::StatusCode, response::IntoResponse };
+use axum::{Json, http::StatusCode, response::IntoResponse};
 use serde_json::json;
 
 pub type ApiResultJson<T> = Result<(StatusCode, Json<T>), ApiError>;
