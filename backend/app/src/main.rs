@@ -1,4 +1,5 @@
 mod core;
+mod domains;
 
 use axum::Router;
 use tokio::net::TcpListener;
