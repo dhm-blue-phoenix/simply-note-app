@@ -5,7 +5,7 @@ use super::models::NoteStatus;
 pub type DtoNotes = Vec<DtoNote>;
 
 // Response Model ( GET )
-#[derive(Serialize)]
+#[derive(Debug, Serialize)]
 pub struct DtoNote {
     pub id: String,
     pub title: String,
@@ -15,13 +15,13 @@ pub struct DtoNote {
 }
 
 // Request Model ( POST, PATCH )
-#[derive(Deserialize)]
+#[derive(Debug, Deserialize)]
 pub struct DtoNotePost {
     pub title: String,
     pub content: String,
 }
 
-#[derive(Deserialize)]
+#[derive(Debug, Deserialize)]
 pub struct DtoNotePatch {
     pub id: String,
     pub title: Option<String>,

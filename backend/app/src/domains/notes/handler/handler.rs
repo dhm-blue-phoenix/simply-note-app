@@ -1,11 +1,12 @@
-use axum::Json;
 use axum::extract::State;
+use axum::Json;
 use axum::http::StatusCode;
 
-use crate::core::ApiResultJson;
+use crate::core::{ ApiResultJson, State as CoreState };
 use super::super::models::{ DtoNotes, NoteStatus, DtoNote, DtoNotePost, DtoNotePatch };
+use super::super::service::{ list_notes };
 
-pub async fn get_notes() -> ApiResultJson<DtoNotes> {
-    let notes: DtoNotes = vec![];
+pub async fn get_notes(State(state): State<CoreState>) -> ApiResultJson<DtoNotes> {
+    let notes: DtoNotes = list_notes(&state.db).await?;
     Ok((StatusCode::OK, Json(notes)))
 }
