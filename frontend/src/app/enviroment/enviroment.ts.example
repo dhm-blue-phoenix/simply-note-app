@@ -1,10 +1,6 @@
+import { Enviroment } from '../shared/interfaces/enviroment';
 
-// test 1
-
-interface Enviroment {
-    BACKEND_URL: string
-}
 
 export const environment: Enviroment = {
-    BACKEND_URL: ''
+    BACKEND_URL: 'http://localhost:0000'
 };
