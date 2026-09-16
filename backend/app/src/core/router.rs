@@ -1,7 +1,8 @@
 use axum::routing::get;
 use axum::{Json, Router};
-use axum::http::{StatusCode, Uri};
+use axum::http::{HeaderValue, StatusCode, Uri};
 use serde::Serialize;
+use tower_http::cors::CorsLayer;
 
 use super::{ApiResultJson, AppState};
 use crate::domains::domains_router;
@@ -11,6 +12,10 @@ pub fn router() -> Router<AppState> {
         .route("/ping", get(ping))
         .nest("/api", domains_router())
         .fallback(fallback)
+        .layer(
+            CorsLayer::new()
+                .allow_origin(HeaderValue::from_static("http://localhost:1420")),
+        )
 }
 
 #[derive(Serialize)]

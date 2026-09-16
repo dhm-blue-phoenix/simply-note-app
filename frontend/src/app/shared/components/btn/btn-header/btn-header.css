@@ -1,0 +1,23 @@
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    width: 24px;
+    height: 24px;
+}
+
+.btn {
+    background-color: var(--bg-btn-header);
+    max-width: 50px;
+    max-height: 50px;
+    width: 50px;
+    height: 50px;
+    border-radius: 16px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,22 +1,14 @@
-import { Component, signal } from "@angular/core";
+import { Component } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
-import { invoke } from "@tauri-apps/api/core";
+
+import { Header } from "./layout/header/header";
+import { Main } from "./layout/main/main";
+import { Footer } from "./layout/footer/footer";
 
 @Component({
   selector: "app-root",
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, Header, Main, Footer],
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.css",
 })
-export class AppComponent {
-  greetingMessage = signal("");
-
-  greet(event: SubmitEvent, name: string): void {
-    event.preventDefault();
-
-    // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-    invoke<string>("greet", { name }).then((text) => {
-      this.greetingMessage.set(text);
-    });
-  }
-}
+export class AppComponent {}

@@ -1,0 +1,12 @@
+section {
+    background-color: var(--bg-color);
+    height: calc(100vh - 60px - (16px * 2));
+    overflow: hidden;
+}
+
+.firstNotiz {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}

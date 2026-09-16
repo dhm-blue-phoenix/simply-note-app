@@ -1,6 +1,5 @@
 use chrono::NaiveDateTime;
 use sqlx::FromRow;
-use uuid::Uuid;
 
 use super::models::NoteStatus;
 

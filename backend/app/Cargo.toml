@@ -9,6 +9,7 @@ tokio.workspace = true
 serde.workspace = true
 serde_json.workspace = true
 tower.workspace = true
+tower-http.workspace = true
 http-body-util.workspace = true
 cargo-watch.workspace = true
 sqlx.workspace = true
