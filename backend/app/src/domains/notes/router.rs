@@ -1,7 +1,7 @@
 use axum::{Router, routing::{get, post, patch, delete}};
 
 use crate::core::AppState;
-use super::handler::handler::get_notes;
+use super::handler::{get_notes};
 
 pub fn router() -> Router<AppState> {
     Router::new()

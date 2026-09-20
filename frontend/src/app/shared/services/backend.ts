@@ -1,6 +1,7 @@
 import { Service } from '@angular/core';
 import { environment } from '../../enviroment/enviroment';
 
+
 type NoteStatus = "notes" | "trash";
 type Notes = Note[];
 interface Note {

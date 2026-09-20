@@ -1,4 +1,3 @@
-use chrono::NaiveDateTime;
 use sqlx::SqlitePool;
 
 use crate::core::ApiResult;
@@ -16,3 +15,11 @@ pub async fn list_notes(pool: &SqlitePool) -> ApiResult<DtoNotes> {
     }).collect();
     Ok(dto_data)
 }
+
+pub async fn find_note() {}
+
+pub async fn add_note() {}
+
+pub async fn edit_note() {}
+
+pub async fn delete_note() {}

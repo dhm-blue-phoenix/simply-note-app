@@ -14,3 +14,17 @@ pub struct DbNote {
     pub status: NoteStatus,
     pub created_at: NaiveDateTime,
 }
+
+#[derive(Debug, FromRow)]
+pub struct DbNoteInsert {
+    pub title: String,
+    pub content: String,
+    pub status: String,
+}
+
+#[derive(Debug, FromRow)]
+pub struct DbNoteUpdate {
+    pub id: String,
+    pub title: String,
+    pub content: String,
+}
