@@ -19,7 +19,6 @@ pub struct DbNote {
 pub struct DbNoteInsert {
     pub title: String,
     pub content: String,
-    pub status: String,
 }
 
 #[derive(Debug, FromRow)]

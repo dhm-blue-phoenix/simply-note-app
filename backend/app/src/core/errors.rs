@@ -6,7 +6,7 @@ pub type ApiResult<T> = Result<T, ApiError>;
 
 #[derive(Debug)]
 pub enum ApiError {
-    NotFound,
+    NotFound(String),
     InvalidInput(String),
     ValidationError(String),
     InternalError(String),
@@ -15,14 +15,17 @@ pub enum ApiError {
 
 impl From<sqlx::Error> for ApiError {
     fn from(error: sqlx::Error) -> Self {
-        ApiError::DatabaseError(error)
+        match error {
+            sqlx::Error::RowNotFound => ApiError::NotFound("DB Eintrag nicht gefunden!".to_string()),
+            error => ApiError::DatabaseError(error),
+        }
     }
 }
 
 impl IntoResponse for ApiError {
     fn into_response(self) -> axum::response::Response {
         let (status, error_msg): (StatusCode, String) = match self {
-            ApiError::NotFound => (StatusCode::NOT_FOUND, "Seite nicht gefunden!".to_string()),
+            ApiError::NotFound(msg) => (StatusCode::NOT_FOUND, msg),
             ApiError::InvalidInput(msg) => (StatusCode::BAD_REQUEST, msg),
             ApiError::ValidationError(msg) => (StatusCode::UNPROCESSABLE_ENTITY, msg),
             ApiError::InternalError(msg) => (StatusCode::INTERNAL_SERVER_ERROR, msg),

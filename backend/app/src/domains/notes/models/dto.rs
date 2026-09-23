@@ -23,8 +23,6 @@ pub struct DtoNotePost {
 
 #[derive(Debug, Deserialize)]
 pub struct DtoNotePatch {
-    pub id: String,
     pub title: Option<String>,
     pub content: Option<String>,
-    pub status: Option<NoteStatus>,
 }
