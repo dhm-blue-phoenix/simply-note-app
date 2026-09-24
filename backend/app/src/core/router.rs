@@ -1,6 +1,6 @@
+use axum::http::{HeaderValue, StatusCode, Uri};
 use axum::routing::get;
 use axum::{Json, Router};
-use axum::http::{HeaderValue, StatusCode, Uri};
 use serde::Serialize;
 use tower_http::cors::CorsLayer;
 
@@ -41,7 +41,7 @@ async fn fallback(uri: Uri) -> ApiResultJson<Fallback> {
 
 async fn ping() -> ApiResultJson<Ping> {
     let body: Ping = Ping {
-        msg: "Server leuft!".to_string()
+        msg: "Server leuft!".to_string(),
     };
     Ok((StatusCode::OK, Json(body)))
 }

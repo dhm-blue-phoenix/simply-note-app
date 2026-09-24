@@ -2,10 +2,10 @@ mod core;
 mod domains;
 
 use axum::Router;
-use tokio::net::TcpListener;
 use dotenvy::dotenv;
+use tokio::net::TcpListener;
 
-use crate::core::{init_state, Environment};
+use crate::core::{Environment, init_state};
 
 #[tokio::main]
 async fn main() {

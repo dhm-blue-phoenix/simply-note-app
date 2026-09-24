@@ -24,6 +24,6 @@ pub struct DbNoteInsert {
 #[derive(Debug, FromRow)]
 pub struct DbNoteUpdate {
     pub id: String,
-    pub title: String,
-    pub content: String,
+    pub title: Option<String>,
+    pub content: Option<String>,
 }

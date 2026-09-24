@@ -1,4 +1,4 @@
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 use super::models::NoteStatus;
 
@@ -18,7 +18,8 @@ pub struct DtoNote {
 #[derive(Debug, Deserialize)]
 pub struct DtoNotePost {
     pub title: String,
-    pub content: String,
+    #[serde(default)]
+    pub content: Option<String>,
 }
 
 #[derive(Debug, Deserialize)]

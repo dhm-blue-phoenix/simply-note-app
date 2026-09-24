@@ -1,8 +1,10 @@
 use sqlx::SqlitePool;
 
-use crate::core::{ApiError, ApiResult};
-use super::models::{DbNotes, DbNote, DtoNote, DtoNotes, NoteStatus, DtoNotePost, DbNoteInsert, DbNoteUpdate};
 use super::db::{find_all, find_by_id, insert, update};
+use super::models::{
+    DbNote, DbNoteInsert, DbNoteUpdate, DbNotes, DtoNote, DtoNotePost, DtoNotes, NoteStatus,
+};
+use crate::core::{ApiError, ApiResult};
 
 pub async fn list(pool: &SqlitePool) -> ApiResult<DtoNotes> {
     let db_data: DbNotes = find_all(pool).await?;
@@ -32,6 +34,18 @@ pub async fn add(pool: &SqlitePool, data: DbNoteInsert) -> ApiResult<DtoNote> {
 }
 
 pub async fn edit(pool: &SqlitePool, data: DbNoteUpdate) -> ApiResult<DtoNote> {
+    if data.id.len() != 36 {
+        return Err(ApiError::InvalidInput("Ungültige ID".to_string()));
+    }
+
+    if let Some(title) = &data.title {
+        if title.trim().is_empty() {
+            return Err(ApiError::InvalidInput(
+                "Titel darf nicht leer sein".to_string(),
+            ));
+        }
+    }
+
     let db_data: DbNote = update(pool, data).await?;
     let dto_data: DtoNote = format_dto_model(db_data);
     Ok(dto_data)

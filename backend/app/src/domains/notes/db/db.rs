@@ -1,9 +1,8 @@
-use chrono::DateTime;
-use super::super::models::{DbNotes, DbNote, DbNoteInsert};
-use sqlx::{raw_sql, SqlitePool, FromRow};
-use uuid::Uuid;
+use super::super::models::{DbNote, DbNoteInsert, DbNotes};
 use crate::core::ApiResult;
 use crate::domains::notes::models::DbNoteUpdate;
+use sqlx::{FromRow, SqlitePool};
+use uuid::Uuid;
 
 pub async fn find_all(pool: &SqlitePool) -> ApiResult<DbNotes> {
     let sql: &str = "SELECT id, title, content, status, created_at FROM notes ORDER BY created_at";
@@ -45,7 +44,7 @@ pub async fn insert(pool: &SqlitePool, data: DbNoteInsert) -> ApiResult<DbNote> 
 }
 
 pub async fn update(pool: &SqlitePool, data: DbNoteUpdate) -> ApiResult<DbNote> {
-    let sql: &str = "UPDATE notes SET title = COALESCE(?, title) SET content = COALESCE(?, content) WHERE id = ?\
+    let sql: &str = "UPDATE notes SET title = COALESCE(?, title), content = COALESCE(?, content) WHERE id = ?\
                     RETURNING id, title, content, status, created_at";
     let result: DbNote = sqlx::query_as::<_, DbNote>(sql)
         .bind(&data.title)
